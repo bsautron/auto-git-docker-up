@@ -45,7 +45,10 @@ const app = express()
             .then(() => execGitPull('origin', 'main'))
             .then(execDCBuild)
             .then(() => res.send('Finish to deploy'))
-            .catch(() => res.status(500).send('an error occurs'))
+            .catch((err) => {
+                console.log('err:', err) /* dump variable */
+                res.status(500).send('An error occurs')
+            })
     })
 app.listen(4040, () => console.log('http://localhost:4040'))
 
