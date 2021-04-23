@@ -38,6 +38,7 @@ function execDCBuild() {
 
 const app = express()
     .use(express.json())
+    .get('/alive', (req, res) => res.send("I'm alive"))
     .post('/deploy', (req, res) => {
         cdToProject(req.body.repository.name)
             .then(() => execGitPull('origin', 'main'))
