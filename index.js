@@ -1,6 +1,5 @@
-const https = require('https')
 const { exec } = require('child_process');
-const basePath = '/home/bruno/workspace/perso'
+const basePath = '/home/bruno'
 const { chdir } = require('process');
 const express = require('express')
 
