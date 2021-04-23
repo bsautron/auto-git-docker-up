@@ -40,11 +40,12 @@ const app = express()
     .use(express.json())
     .get('/alive', (req, res) => res.send("I'm alive"))
     .post('/deploy', (req, res) => {
+        console.log('req.body:', req.body) /* dump variable */
         cdToProject(req.body.repository.name)
             .then(() => execGitPull('origin', 'main'))
             .then(execDCBuild)
             .then(() => res.send('Finish to deploy'))
-            .catch(() => res.statusCode(500).send('an error occurs'))
+            .catch(() => res.status(500).send('an error occurs'))
     })
 app.listen(4040, () => console.log('http://localhost:4040'))
 
